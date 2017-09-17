@@ -5,7 +5,7 @@ using namespace std;
 struct city_property
 {
     int id;
-    char *img_name;
+    char img_name[20];
     HDC citymap;
 };
 
@@ -13,17 +13,17 @@ int main()
 {
     city_property city;
 
-    cout << "Ââåäèòå öèôðó - íîìåð ãîðîäà" << endl;
+    cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¶Ã¨Ã´Ã°Ã³ - Ã­Ã®Ã¬Ã¥Ã° Ã£Ã®Ã°Ã®Ã¤Ã " << endl;
     cin >> city.id;
 
     txCreateWindow(800, 600);
     if (city.id == 1)
     {
-        city.img_name = "img\Ulskcity.bmp";
+        strcpy(city.img_name, "img\Ulskcity.bmp");
     }
     else
     {
-        city.img_name = "img\Sochicity.bmp";
+        strcpy(city.img_name, "img\Sochicity.bmp");
     }
     city.citymap =  txLoadImage(city.img_name);
     txBitBlt (txDC(), 0, 0, 800, 600, city.citymap, 0, 0);
