@@ -14,7 +14,9 @@ int main()
     city_property city;
 
     cout << "Ââåäèòå öèôðó - íîìåð ãîðîäà" << endl;
-    cin >> city.id;
+    char *tmp;
+    cin >> tmp;
+    city.id = atoi(tmp);
 
     txCreateWindow(800, 600);
     if (city.id == 1)
