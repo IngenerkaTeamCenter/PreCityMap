@@ -1,32 +1,56 @@
 #include "TXLib.h"
 
-using namespace std;
-
-struct city_property
-{
-    int id;
-    char img_name[20];
-    HDC citymap;
-};
-
-int main()
-{
-    city_property city;
-
-    cout << "Г‚ГўГҐГ¤ГЁГІГҐ Г¶ГЁГґГ°Гі - Г­Г®Г¬ГҐГ° ГЈГ®Г°Г®Г¤Г " << endl;
-    char *tmp;
-    cin >> tmp;
-    city.id = atoi(tmp);
-
-    txCreateWindow(800, 600);
-    if (city.id == 1)
+    int main()
     {
-        strcpy(city.img_name, "img\Ulskcity.bmp");
-    }
-    else
+    txCreateWindow(1100,950);
+
+    txSetColor(TX_BLACK);
+    txSetFillColor(TX_BLACK);
+    txClear();
+    txSetColor((TX_RED), 70);
+    txSetFillColor(TX_RED);
+    //Ульяновск
+    txLine(100, 100, 300, 100);
+    txLine(100, 100, 100, 700);
+    //Дмитровград
+    txRectangle(450, 450, 700, 700);
+    //Сочи
+    txRectangle(900, 100, 980, 800);
+
+    txDrawText(500, 50, 700, 100, "Выберите город");
+    txDrawText(100, 25, 300, 50, "1.Ульяновск");
+    txDrawText(550, 375, 600, 400, "2.Дмитровград");
+    txDrawText(900, 25, 1050, 50, "3.Сочи");
+
+    HDC abackground_FromTXLibHelp = txLoadImage ("Ульяновск.bmp");
+    HDC bbackground_FromTXLibHelp = txLoadImage ("Дмитровград.bmp");
+    HDC cbackground_FromTXLibHelp = txLoadImage ("Сочи.bmp");
+
+
+
+
+
+
+    while(!GetAsyncKeyState(VK_ESCAPE))
+
+    if (GetAsyncKeyState('1'))
     {
-        strcpy(city.img_name, "img\Sochicity.bmp");
+      txBitBlt (txDC(), 0, 0, 1100, 950, abackground_FromTXLibHelp, 0, 0);
+
     }
-    city.citymap =  txLoadImage(city.img_name);
-    txBitBlt (txDC(), 0, 0, 800, 600, city.citymap, 0, 0);
-}
+    else if (GetAsyncKeyState('2'))
+    {
+    txBitBlt (txDC(), 0, 0, 1100, 950, bbackground_FromTXLibHelp, 0, 0);
+
+    }
+    else if (GetAsyncKeyState('3'))
+    {
+      txBitBlt (txDC(), 0, 0, 1100, 950, cbackground_FromTXLibHelp, 0, 0);
+
+    }
+    txDeleteDC (abackground_FromTXLibHelp);
+    txDeleteDC (bbackground_FromTXLibHelp);
+    txDeleteDC (cbackground_FromTXLibHelp);
+
+
+    }
