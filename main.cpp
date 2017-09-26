@@ -1,56 +1,108 @@
+#include <iostream>
 #include "TXLib.h"
+using namespace std;
 
-    int main()
+void DrawWAKZAL(int x, int y)
+{
+    txSetColour(TX_PINK);
+    txSetFillColour(TX_PINK);
+    txRectangle(x - 20, y - 20, x + 20, y + 20);
+
+}
+
+void DrawTYRAGA(int x, int y)
+{
+    txSetColour(TX_YELLOW);
+    txSetFillColour(TX_YELLOW);
+    txRectangle(x - 20, y - 20, x + 20, y + 20);
+
+}
+
+int main()
     {
-    txCreateWindow(1100,950);
 
-    txSetColor(TX_BLACK);
-    txSetFillColor(TX_BLACK);
-    txClear();
-    txSetColor((TX_RED), 70);
-    txSetFillColor(TX_RED);
-    //Ульяновск
-    txLine(100, 100, 300, 100);
-    txLine(100, 100, 100, 700);
-    //Дмитровград
-    txRectangle(450, 450, 700, 700);
-    //Сочи
-    txRectangle(900, 100, 980, 800);
+    char str[20];
+    cout << "Ведите цифру\n" << endl;
+    cin >> str;
+    char jd[20];
+    cout << "Ведите цифру\n" << endl;
+    cin >> jd;
+    char TR[20];
+    cout << "Ведите цифру\n" << endl;
+    cin >> TR;
 
-    txDrawText(500, 50, 700, 100, "Выберите город");
-    txDrawText(100, 25, 300, 50, "1.Ульяновск");
-    txDrawText(550, 375, 600, 400, "2.Дмитровград");
-    txDrawText(900, 25, 1050, 50, "3.Сочи");
+    HDC background_FromTXLibHelp;
 
-    HDC abackground_FromTXLibHelp = txLoadImage ("Ульяновск.bmp");
-    HDC bbackground_FromTXLibHelp = txLoadImage ("Дмитровград.bmp");
-    HDC cbackground_FromTXLibHelp = txLoadImage ("Сочи.bmp");
+    txCreateWindow(1100,850);
 
 
+    if (strcmp(str, "1") == 0) {
+        background_FromTXLibHelp = txLoadImage ("Ulskcity.bmp");
+            txBitBlt(txDC(), 0, 0, 1334, 850, background_FromTXLibHelp, 0, 0);
+        txDeleteDC (background_FromTXLibHelp);
 
+    } else if (strcmp(str, "2") == 0){
+        background_FromTXLibHelp = txLoadImage ("DMcity.bmp");
+            txBitBlt(txDC(), 0, 0, 1115, 850, background_FromTXLibHelp, 0, 0);
+        txDeleteDC (background_FromTXLibHelp);
 
+    } else if (strcmp(str, "3") == 0){
+        background_FromTXLibHelp = txLoadImage ("Sochicity.bmp");
+            txBitBlt(txDC(), 0, 0, 1100, 970, background_FromTXLibHelp, 0, 0);
+        txDeleteDC (background_FromTXLibHelp);
+    }
 
+    if (strcmp(jd, "1") == 0) {
 
-    while(!GetAsyncKeyState(VK_ESCAPE))
+     DrawWAKZAL(360, 360);
+     txSetFillColour(TX_ORANGE);
+     txSetColour(TX_ORANGE);
+     txSelectFont ("Comic Sans MS", 18);
+     txDrawText(300, 380, 420, 410, "ПЕД.ВОКЗАЛ");
 
-    if (GetAsyncKeyState('1'))
-    {
-      txBitBlt (txDC(), 0, 0, 1100, 950, abackground_FromTXLibHelp, 0, 0);
+    } else if (strcmp(jd, "2") == 0){
+
+     DrawWAKZAL(670, 500);
+     txSetFillColour(TX_ORANGE);
+     txSetColour(TX_ORANGE);
+     txSelectFont ("Comic Sans MS", 18);
+     txDrawText(630, 520, 740, 540, "ПЕД.ВОКЗАЛ");
+
+    } else if (strcmp(jd, "3") == 0){
+
+     DrawWAKZAL(600, 200);
+     txSetFillColour(TX_ORANGE);
+     txSetColour(TX_ORANGE);
+     txSelectFont ("Comic Sans MS", 18);
+     txDrawText(570, 220, 670, 280, "ПЕД.ВОКЗАЛ");
 
     }
-    else if (GetAsyncKeyState('2'))
-    {
-    txBitBlt (txDC(), 0, 0, 1100, 950, bbackground_FromTXLibHelp, 0, 0);
+
+    if (strcmp(TR, "1") == 0) {
+
+     DrawTYRAGA(360, 360);
+     txSetFillColour(TX_ORANGE);
+     txSetColour(TX_ORANGE);
+     txSelectFont ("Comic Sans MS", 18);
+     txDrawText(300, 380, 450, 410, "ПЕД.ТЮРЯГА");
+
+    } else if (strcmp(TR, "2") == 0){
+
+     DrawTYRAGA(670, 500);
+     txSetFillColour(TX_ORANGE);
+     txSetColour(TX_ORANGE);
+     txSelectFont ("Comic Sans MS", 18);
+     txDrawText(630, 520, 770, 540, "ПЕД.ТЮРЯГА");
+
+    } else if (strcmp(TR, "3") == 0){
+
+     DrawTYRAGA(600, 200);
+     txSetFillColour(TX_ORANGE);
+     txSetColour(TX_ORANGE);
+     txSelectFont ("Comic Sans MS", 18);
+     txDrawText(570, 220, 700, 280, "ПЕД.ТЮРЯГА");
 
     }
-    else if (GetAsyncKeyState('3'))
-    {
-      txBitBlt (txDC(), 0, 0, 1100, 950, cbackground_FromTXLibHelp, 0, 0);
-
-    }
-    txDeleteDC (abackground_FromTXLibHelp);
-    txDeleteDC (bbackground_FromTXLibHelp);
-    txDeleteDC (cbackground_FromTXLibHelp);
-
+    return 0;
 
     }
